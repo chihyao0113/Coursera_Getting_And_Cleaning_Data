@@ -1,4 +1,6 @@
-setwd("C:/Users/Marcus/Desktop/getdata-projectfiles-UCI HAR Dataset")
+#Read data in a specific directory
+setwd("C:/Documents and Settings/marcus.chen/Desktop/getdata-projectfiles-UCI HAR Dataset")
+#setwd("C:/Users/Marcus/Desktop/getdata-projectfiles-UCI HAR Dataset")
 subdir='UCI HAR Dataset'
 
 path.activitylabel=file.path(subdir,'activity_labels.txt')
@@ -27,34 +29,31 @@ testing = read.csv(path.test.x, sep="", header=FALSE)
 testing[,562] = read.csv(path.test.y, sep="", header=FALSE)
 testing[,563] = read.csv(path.test.subject, sep="", header=FALSE)
 
+# Merges the training and the test sets to create one data set.
 mergeData = rbind(training, testing)
 
-
+# Extracts only the measurements on the mean and standard deviation for each measurement.
 indexOfMeanStd <- grep(".*Mean.*|.*Std.*", features[,2])
-
 features <- features[indexOfMeanStd,]
-
-
 indexOfMeanStd <- c(indexOfMeanStd, 562, 563)
-
-
 mergeData <- mergeData[,indexOfMeanStd]
 
-
+#Uses descriptive activity names to name the activities in the data set
 colnames(mergeData) <- c(features$V2, "Activity", "Subject")
 colnames(mergeData) <- tolower(colnames(mergeData))
 
+#Appropriately labels the data set with descriptive variable names
 indexActivity = 1
 for (currentActivityLabel in activityLabels$V2) {
-        mergeData$activity <- gsub(currentActivity, currentActivityLabel, mergeData$activity)
+        mergeData$activity <- gsub(indexActivity, currentActivityLabel, mergeData$activity)
         indexActivity <- indexActivity + 1
 }
 
+#Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 mergeData$activity <- as.factor(mergeData$activity)
 mergeData$subject <- as.factor(mergeData$subject)
-
-tidy = aggregate(mergeData, by=list(activity = mergeData$activity, subject=mergeData$subject), mean)
-
+tidy = aggregate(mergeData, by=list(subject = mergeData$subject, activity=mergeData$activity), mean)
 tidy[,90] = NULL
 tidy[,89] = NULL
+#Output data set as a txt file created with write.table() using row.name=FALSE
 write.table(tidy, "tidy.txt", sep="\t",row.names=FALSE)

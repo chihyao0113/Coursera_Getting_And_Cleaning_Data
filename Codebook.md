@@ -1,30 +1,29 @@
-##The Code Book
-Following is the codebook of the column names in the merged data set.
-
- The line begin with "t": denote signal in time domain, where the signal are the physical quantities measured.
- The line begin with "f": denote signal in freq domain, where the signal are the physical quantities transformed by FFT.
- The line begin with "angle":denot the angle between two vectors
+#The Code Book
+#Following is the codebook of the column names in the merged data set.
+###The line begin with "t": denote signal in time domain, where the signal are the physical quantities measured.
+###The line begin with "f": denote signal in freq domain, where the signal are the physical quantities transformed by FFT.
+###The line begin with "angle":denot the angle between two vectors
  
- The meaning of words after "t", "f", and "angle" are listed below
- body: denote the physical quantity contributed by subject
- gravity: denote the physical quantity contributed by gravity
+##The meaning of words after "t", "f", and "angle" are listed below.
+###Body: denote the physical quantity contributed by subject
+###Gravity: denote the physical quantity contributed by gravity
  
- The words behind "body and "gravity" is the linear and angular realted physical quantities.
- acc: linear acclearation
- accjerk:jerk of linear acclearation
- accmag: magnatude of the
+##The words behind "body and "gravity" is the linear and angular realted physical quantities.
+###acc: linear acclearation
+###accjerk:jerk of linear acclearation
+###accmag: magnatude of the
  
- gyro: angular velocity
- gyrojerk: jerk of velocity
- gyromag: magnitude of the angular velocity
+###gyro: angular velocity
+###gyrojerk: jerk of velocity
+###gyromag: magnitude of the angular velocity
  
- The final code is the statistis like of the previous quantity
- mean: mean value of the physical quantities
- std: standard deviation value of the physical value
+##The final code is the statistics like of the previous quantity
+###mean: mean value of the physical quantities
+###std: standard deviation value of the physical value
  
- x,y,z: denote the 3-axis
+###x,y,z: denote the 3-axis
  
- with the above code book, you could know what each variable represent in the tidy.txt files.
+##With the above code book, you could know what each variable represent in the tidy.txt files.
  
   [1] "tbodyaccmeanx"                      "tbodyaccmeany"                     
   [3] "tbodyaccmeanz"                      "tbodyaccstdx"                      
